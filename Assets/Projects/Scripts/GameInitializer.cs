@@ -18,6 +18,10 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] float cooldown;
 
     [Space]
+    [Header("Player")]
+    [SerializeField] PlayerBehavior player;
+
+    [Space]
     [Header("Game Manager")]
     [SerializeField] GameManager gameManager;
 
@@ -33,6 +37,7 @@ public class GameInitializer : MonoBehaviour
     {
         cameraManager = Instantiate(cameraManager);
         spawner = Instantiate(spawner);
+        player = Instantiate(player);
         gameManager = Instantiate(gameManager);
     }
 
@@ -41,7 +46,8 @@ public class GameInitializer : MonoBehaviour
         cameraManager.Initialize(camPosition, camRotation);
         (Vector3 min, Vector3 max) = cameraManager.GetRightBorderPoints(forwardSpawn);
         spawner.Initialize(enemyPrefab, min, max, batchNumber);
-        gameManager.Initialize(spawner, cooldown);
+        gameManager.Initialize(spawner, cooldown, player);
+        player.Initialize(gameManager);
     }
 
 }
