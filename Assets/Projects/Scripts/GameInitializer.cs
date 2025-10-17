@@ -59,6 +59,8 @@ public class GameInitializer : MonoBehaviour
         spawner.Initialize(enemyPrefab, min, max, batchNumber);
         player.Initialize(gameManager, cameraManager.Cam);
         player.gameObject.SetActive(true);
+        
+        player.GetComponent<PlayerCollisionInfo>().Initialize(gameManager);
 
         gameManager.Initialize(spawner, cooldown, player, playerLives, lifeCanva);
         lifeCanva.Initialise(lifeImage, playerLives, firtImagePos, imageOffset);

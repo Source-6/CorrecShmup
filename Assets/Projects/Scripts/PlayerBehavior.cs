@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerCollisionInfo))]
 public class PlayerBehavior : MonoBehaviour
 {
     [SerializeField] private InputActionAsset actions;

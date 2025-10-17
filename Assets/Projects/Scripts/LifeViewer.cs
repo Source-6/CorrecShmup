@@ -41,5 +41,12 @@ public class LifeViewer : MonoBehaviour
 
             }
         }
+        else
+        {
+            for (int index = 0; index < images.Count; index++)
+            {
+                images[index].gameObject.SetActive(index < life);
+            }
+        }
     }
 }

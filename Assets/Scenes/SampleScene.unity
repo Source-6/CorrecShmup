@@ -354,6 +354,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7621412105973410194, guid: 22c98f80efb145140aaaf3b8a6984187, type: 3}
     - target: {fileID: 8469039900403972435, guid: ce420ebc21be49b48bba834f93831cfa, type: 3}
+      propertyPath: playerLives
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469039900403972435, guid: ce420ebc21be49b48bba834f93831cfa, type: 3}
       propertyPath: camPosition.z
       value: -20
       objectReference: {fileID: 0}
@@ -363,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: -5417105893754394726, guid: a3b35bbfd19f9e743a5944736e5b9669, type: 3}
     - target: {fileID: 8469039900403972435, guid: ce420ebc21be49b48bba834f93831cfa, type: 3}
       propertyPath: imageOffset.x
-      value: -32
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 8469039900403972435, guid: ce420ebc21be49b48bba834f93831cfa, type: 3}
       propertyPath: firtImagePos.y

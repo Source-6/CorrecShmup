@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -46,4 +47,15 @@ public class GameManager : MonoBehaviour
     {
         spawner.DeSpawn(enemy);
     }
+
+    public void PlayerContact(GameObject other)
+    {
+        if (other.TryGetComponent(out EnemyBehavior enemy))
+        {
+            playerLives -= 1;
+            if (playerLives >= 0) lifeViewer.UpdateImages(playerLives);
+            EnemyLeaveGame(enemy);
+        }
+    }
+
 }
