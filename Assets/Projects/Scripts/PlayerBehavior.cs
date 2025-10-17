@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,35 +8,36 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private InputActionAsset actions;
     private InputAction xAxis;
     private InputAction yAxis;
+    private InputAction shoot;
+    private InputAction targetAction;
     [SerializeField] private float speed;
     [SerializeField] GameManager gameManager;
     private Camera cam;
-    // private bool invincible;
-    // private int life;
+    private BulletBehavior bullet;
 
 
-    public void Initialize(GameManager gameManager, Camera cam)
+    public void Initialize(GameManager gameManager, Camera cam, BulletBehavior bullet)
     {
         this.gameManager = gameManager;
         this.cam = cam;
         xAxis = actions.FindActionMap("Move").FindAction("xAxis");
         yAxis = actions.FindActionMap("Move").FindAction("yAxis");
-        // invincible = false;
-        // life = 3;
+        shoot = actions.FindActionMap("Move").FindAction("Shoot");
+        targetAction = actions.FindActionMap("Move").FindAction("Target");
+        this.bullet = bullet;
+
     }
 
     public void Process()
     {
         Moving();
-        // if (life <= 0)
-        // {
-        //     life = 3;
-        // }
+
     }
 
     void OnEnable()
     {
         actions.FindActionMap("Move").Enable();
+        actions.FindActionMap("Move").FindAction("Shoot").performed += Shoot;
     }
 
     void OnDisable()
@@ -60,21 +62,18 @@ public class PlayerBehavior : MonoBehaviour
         transform.position = cam.ScreenToWorldPoint(screenPosition);
     }
 
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     if (life > 0)
-    //     {
-    //         invincible = true;
-    //         life -= 1;
-    //         Debug.Log(life);
+    private void Shoot(InputAction.CallbackContext callbackContext)
+    {
+        Vector3 targetPosition = targetAction.ReadValue<Vector2>();
+        targetPosition.z = transform.position.z - cam.transform.position.z;
 
-    //     }
-    // }
+        targetPosition = cam.ScreenToWorldPoint(targetPosition);
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        BulletBehavior newbullet = Instantiate(bullet);
+        newbullet.Initialize(transform.position, direction, 5f);
+        gameManager.AddBullet(newbullet);
+    }
 
-    // void OnTriggerExit(Collider other)
-    // {
-    //     invincible = false;
-    // }
 
 
 }

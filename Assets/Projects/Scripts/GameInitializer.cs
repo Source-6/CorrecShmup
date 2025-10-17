@@ -35,6 +35,10 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] Vector2 imageOffset;
 
 
+    [Space]
+    [Header("player - Bullet")]
+    [SerializeField] BulletBehavior bullet;
+
 
     void Start()
     {
@@ -57,7 +61,7 @@ public class GameInitializer : MonoBehaviour
         cameraManager.Initialize(camPosition, camRotation);
         (Vector3 min, Vector3 max) = cameraManager.GetRightBorderPoints(forwardSpawn);
         spawner.Initialize(enemyPrefab, min, max, batchNumber);
-        player.Initialize(gameManager, cameraManager.Cam);
+        player.Initialize(gameManager, cameraManager.Cam, bullet);
         player.gameObject.SetActive(true);
         
         player.GetComponent<PlayerCollisionInfo>().Initialize(gameManager);

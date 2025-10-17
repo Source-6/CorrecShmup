@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
     private PlayerBehavior player;
     private List<EnemyBehavior> enemies = new();
+    private List<BulletBehavior> bullets = new();
     private float cooldown;
     private float chrono = 0f;
     private int playerLives;
@@ -41,11 +42,27 @@ public class GameManager : MonoBehaviour
         {
             enemies[index].Process();
         }
+
+        for (int index = 0; index < bullets.Count; index++)
+        {
+            bullets[index].Process();
+        }
+        
+    }
+
+    public void AddBullet(BulletBehavior bullet)
+    {
+        bullets.Add(bullet);
     }
 
     public void EnemyLeaveGame(EnemyBehavior enemy)
     {
         spawner.DeSpawn(enemy);
+    }
+
+    public void BulletLeaveGame(BulletBehavior bullet)
+    {
+        Destroy(bullet);
     }
 
     public void PlayerContact(GameObject other)

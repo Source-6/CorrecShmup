@@ -59,3 +59,4 @@ MonoBehaviour:
   lifeImage: {fileID: 7621412105973410194, guid: 22c98f80efb145140aaaf3b8a6984187, type: 3}
   firtImagePos: {x: 0, y: -10}
   imageOffset: {x: -60, y: 0}
+  bullet: {fileID: 4809942062304339111, guid: 74f36cc9d68b51a4daad3054e95bcf8b, type: 3}
