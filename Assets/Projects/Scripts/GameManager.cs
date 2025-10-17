@@ -9,12 +9,16 @@ public class GameManager : MonoBehaviour
     private List<EnemyBehavior> enemies = new();
     private float cooldown;
     private float chrono = 0f;
+    private int playerLives;
+    private LifeViewer lifeViewer;
 
-    public void Initialize(Spawner spawner, float cooldown, PlayerBehavior player)
+    public void Initialize(Spawner spawner, float cooldown, PlayerBehavior player, int playerLives, LifeViewer lifeViewer)
     {
         this.spawner = spawner;
         this.cooldown = cooldown;
         this.player = player;
+        this.playerLives = playerLives;
+        this.lifeViewer = lifeViewer;
     }
 
     private void Update()

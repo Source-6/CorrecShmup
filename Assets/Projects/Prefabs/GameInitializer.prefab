@@ -52,5 +52,10 @@ MonoBehaviour:
   enemyPrefab: {fileID: 560770793743444424, guid: 83354abfe228103419efce6b7c6be7dd, type: 3}
   batchNumber: 10
   cooldown: 0.1
-  player: {fileID: 3926564400267774249, guid: 617b07b34017afe4c9c3e0bb9ad174a5, type: 3}
   gameManager: {fileID: 4513057005452091194, guid: 51bc5d7577b6e3347af8a8dca8568a09, type: 3}
+  player: {fileID: 3926564400267774249, guid: 617b07b34017afe4c9c3e0bb9ad174a5, type: 3}
+  playerLives: 3
+  lifeCanva: {fileID: -686712760012211469, guid: ddda0e5d109309d4da289762fa292e8f, type: 3}
+  lifeImage: {fileID: 7621412105973410194, guid: 22c98f80efb145140aaaf3b8a6984187, type: 3}
+  firtImagePos: {x: 0, y: -10}
+  imageOffset: {x: -60, y: 0}

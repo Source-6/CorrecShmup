@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.UI;
 using UnityEngine;
 
 
@@ -18,12 +19,21 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] float cooldown;
 
     [Space]
-    [Header("Player")]
-    [SerializeField] PlayerBehavior player;
-
-    [Space]
     [Header("Game Manager")]
     [SerializeField] GameManager gameManager;
+
+    [Space]
+    [Header("Player")]
+    [SerializeField] PlayerBehavior player;
+    [SerializeField] int playerLives = 3;
+
+    [Space]
+    [Header("UI")]
+    [SerializeField] LifeViewer lifeCanva;
+    [SerializeField] Image lifeImage;
+    [SerializeField] Vector2 firtImagePos;
+    [SerializeField] Vector2 imageOffset;
+
 
 
     void Start()
@@ -39,6 +49,7 @@ public class GameInitializer : MonoBehaviour
         spawner = Instantiate(spawner);
         player = Instantiate(player);
         gameManager = Instantiate(gameManager);
+        lifeCanva = Instantiate(lifeCanva);
     }
 
     private void InitializeObjects()
@@ -46,8 +57,12 @@ public class GameInitializer : MonoBehaviour
         cameraManager.Initialize(camPosition, camRotation);
         (Vector3 min, Vector3 max) = cameraManager.GetRightBorderPoints(forwardSpawn);
         spawner.Initialize(enemyPrefab, min, max, batchNumber);
-        gameManager.Initialize(spawner, cooldown, player);
-        player.Initialize(gameManager);
+        player.Initialize(gameManager, cameraManager.Cam);
+        player.gameObject.SetActive(true);
+
+        gameManager.Initialize(spawner, cooldown, player, playerLives, lifeCanva);
+        lifeCanva.Initialise(lifeImage, playerLives, firtImagePos, imageOffset);
+
     }
 
 }
